@@ -48,7 +48,7 @@ const dotsNbr = document.querySelectorAll('.dot');
 dotsNbr.forEach((dot) => {
 	dot.addEventListener('click', (event) => {
 		const data_id = dot.getAttribute('data.id');
-		setSlide(data_id);
+		updateSlide(data_id);
 	});
 });
 
@@ -63,8 +63,7 @@ arrow_left.addEventListener("click", function () {
 		currentSlide = slides.length - 1;
 	}
 	//Update des points et des slides
-	updateDot();
-	updateSlide();
+	updateSlide(currentSlide);
 });
 // Ajout de l'event click pour la flèche droite
 arrow_right.addEventListener("click", function () {
@@ -77,8 +76,7 @@ arrow_right.addEventListener("click", function () {
 		currentSlide = 0
 	}
 	//update des dots et slides
-	updateDot();
-	updateSlide();
+	updateSlide(currentSlide);
 });
 
 
@@ -91,16 +89,9 @@ function updateDot() {
 	dotsNbr[currentSlide].classList.add('dot_selected');
 }
 
-function updateSlide() {
-	// Mise a jour de l'image via les assets
-	bannerImg.src = `./assets/images/slideshow/${slides[currentSlide].image}`;
-	// Mise a jour du code HTML via le tagLine au lieu de innerText qui lui modifie le text d'une balise
-	tagLine.innerHTML = slides[currentSlide].tagLine;
-}
-
-
-function setSlide(id){
+function updateSlide(id) {
 	currentSlide = id;
+	// Mise a jour de l'image via les assets
 	bannerImg.src = `./assets/images/slideshow/${slides[currentSlide].image}`;
 	// Mise a jour du code HTML via le tagLine au lieu de innerText qui lui modifie le text d'une balise
 	tagLine.innerHTML = slides[currentSlide].tagLine;
