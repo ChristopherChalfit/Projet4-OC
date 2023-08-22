@@ -31,6 +31,7 @@ function generateDots() {
 		const dot = document.createElement("div");
 		//Ajout de la class dot
 		dot.classList.add('dot');
+		dot.setAttribute("data.id", i);
 		// Vérification que i == currentSlide
 		if (i === currentSlide) {
 			//Ajout de l'élement dot_selected
@@ -44,6 +45,12 @@ function generateDots() {
 generateDots();
 // recupération nombre Dots
 const dotsNbr = document.querySelectorAll('.dot');
+dotsNbr.forEach((dot) => {
+	dot.addEventListener('click', (event) => {
+		const data_id = dot.getAttribute('data.id');
+		setSlide(data_id);
+	});
+});
 
 // Ajout de l'event click pour la flèche gauche
 arrow_left.addEventListener("click", function () {
@@ -89,4 +96,13 @@ function updateSlide() {
 	bannerImg.src = `./assets/images/slideshow/${slides[currentSlide].image}`;
 	// Mise a jour du code HTML via le tagLine au lieu de innerText qui lui modifie le text d'une balise
 	tagLine.innerHTML = slides[currentSlide].tagLine;
+}
+
+
+function setSlide(id){
+	currentSlide = id;
+	bannerImg.src = `./assets/images/slideshow/${slides[currentSlide].image}`;
+	// Mise a jour du code HTML via le tagLine au lieu de innerText qui lui modifie le text d'une balise
+	tagLine.innerHTML = slides[currentSlide].tagLine;
+	updateDot();
 }
