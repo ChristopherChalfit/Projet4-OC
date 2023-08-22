@@ -64,7 +64,6 @@ arrow_right.addEventListener("click", function () {
 	console.log("Droite");
 	// Incrémentation du currentSlide
 	currentSlide++;
-	console.log(dotsNbr.length);
 	//Si currentSlide supérieur aux nombres de points
 	if (currentSlide >= dotsNbr.length) {
 		//Retour à 0
