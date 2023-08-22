@@ -48,40 +48,26 @@ const dotsNbr = document.querySelectorAll('.dot');
 dotsNbr.forEach((dot) => {
 	dot.addEventListener('click', (event) => {
 		const data_id = dot.getAttribute('data.id');
-		updateSlide(data_id);
+		updateSlide(data_id -currentSlide);
 	});
 });
 
 // Ajout de l'event click pour la flèche gauche
 arrow_left.addEventListener("click", function () {
 	console.log("Gauche");
-	//On retire -1 au currentSlide
-	currentSlide -= 1;
-	// Si current slide négatif
-	if (currentSlide === -1) {
-		//On met le current slide au dernier element
-		currentSlide = slides.length - 1;
-	}
 	//Update des points et des slides
-	updateSlide(currentSlide);
+	updateSlide(-1);
 });
 // Ajout de l'event click pour la flèche droite
 arrow_right.addEventListener("click", function () {
 	console.log("Droite");
-	// Incrémentation du currentSlide
-	currentSlide++;
-	//Si currentSlide supérieur aux nombres de points
-	if (currentSlide >= dotsNbr.length) {
-		//Retour à 0
-		currentSlide = 0
-	}
 	//update des dots et slides
-	updateSlide(currentSlide);
+	updateSlide(+1);
 });
 
-
-function updateSlide(id) {
-	currentSlide = id;
+function updateSlide(value) {
+	currentSlide = (currentSlide + value + slides.length) % slides.length
+	console.log(currentSlide);
 	// Mise a jour de l'image via les assets
 	bannerImg.src = `./assets/images/slideshow/${slides[currentSlide].image}`;
 	// Mise a jour du code HTML via le tagLine au lieu de innerText qui lui modifie le text d'une balise
