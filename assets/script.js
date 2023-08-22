@@ -80,15 +80,6 @@ arrow_right.addEventListener("click", function () {
 });
 
 
-function updateDot() {
-	//Récupération du dot selected
-	const selected = document.querySelector('.dot_selected');
-	// retirer la class a ce dots
-	selected.classList.remove('dot_selected');
-	// Ajouté dot_select au dots actuel
-	dotsNbr[currentSlide].classList.add('dot_selected');
-}
-
 function updateSlide(id) {
 	currentSlide = id;
 	// Mise a jour de l'image via les assets
@@ -96,4 +87,12 @@ function updateSlide(id) {
 	// Mise a jour du code HTML via le tagLine au lieu de innerText qui lui modifie le text d'une balise
 	tagLine.innerHTML = slides[currentSlide].tagLine;
 	updateDot();
+}
+function updateDot() {
+	//Récupération du dot selected
+	const selected = document.querySelector('.dot_selected');
+	// retirer la class a ce dots
+	selected.classList.remove('dot_selected');
+	// Ajouté dot_select au dots actuel
+	dotsNbr[currentSlide].classList.add('dot_selected');
 }
